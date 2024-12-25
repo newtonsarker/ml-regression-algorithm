@@ -1,6 +1,6 @@
 import math
 
-def projected_value_of_the_training_model_item(x, weight, bias):
+def predicted_value_of_the_training_model_item(x, weight, bias):
     return weight * x + bias
 
 def cost_of_error(training_values_x, training_values_y, weight, bias):
@@ -10,7 +10,7 @@ def cost_of_error(training_values_x, training_values_y, weight, bias):
     for i in range(m):
         x = training_values_x[i]
         y = training_values_y[i]
-        f_wb = projected_value_of_the_training_model_item(x, weight, bias)
+        f_wb = predicted_value_of_the_training_model_item(x, weight, bias)
         cost = cost + (f_wb - y) ** 2
     total_cost = 1 / (2 * m) * cost
 
@@ -36,7 +36,7 @@ def gradient(training_values_x, training_values_y, weight, bias):
     for i in range(m):
         x = training_values_x[i]
         y = training_values_y[i]
-        f_wb = projected_value_of_the_training_model_item(x, weight, bias)
+        f_wb = predicted_value_of_the_training_model_item(x, weight, bias)
         dj_dw_i = (f_wb - y) * x # derivative of weight
         dj_db_i = f_wb - y # derivative of bias
         dj_db += dj_db_i
