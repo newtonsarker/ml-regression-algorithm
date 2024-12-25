@@ -1,5 +1,5 @@
 import numpy as np
-import algorithm.gradient_descent as gd
+import algorithm.single_feature_gradient_descent as gd
 
 def main():
     training_values_x = np.array([1.0, 2.0])

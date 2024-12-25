@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plot
-import algorithm.cost_calculator as cost_calc
+import algorithm.single_feature_cost_calculator as cost_calc
 
 def main():
     training_values_x = np.array([1.0, 2.0])
@@ -14,7 +14,7 @@ def main():
     w_array = np.arange(*w_range, 5)
     cost_array = cost_calc.compute_cost_array(training_values_x, training_values_y, w_array, b)
 
-    plot.style.use('./resources/deeplearning.mplstyle')
+    # plot.style.use('style/deeplearning.mplstyle')
     figure, axes = plot.subplots(1, 2, constrained_layout=True, figsize=(8, 4))
     draw_prediction_graph(training_values_x, training_values_y, predicted_values, axes[0])
     draw_cost_intuition(training_values_x, training_values_y, w_array, b, cost_array, axes[1])
