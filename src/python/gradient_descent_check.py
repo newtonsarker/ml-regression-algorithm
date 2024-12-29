@@ -27,13 +27,15 @@ def __draw_graph():
 
     # plot cost versus iteration
     gradient_ax = axes[1, 0]
-    gradient_ax.plot(cost_history)
+    gradient_ax.plot(copy.deepcopy(cost_history))
     gradient_ax.set_title("Cost vs. iteration")
     gradient_ax.set_ylabel('Cost')
     gradient_ax.set_xlabel('iteration step')
 
+    # plot cost versus iteration (tail)
     gradient_ax1 = axes[1, 1]
-    gradient_ax1.plot(100 + np.arange(len(cost_history[100:])), cost_history[100:])
+    gradient_ax1_data = copy.deepcopy(cost_history[100:])
+    gradient_ax1.plot(100 + np.arange(len(gradient_ax1_data)), gradient_ax1_data)
     gradient_ax1.set_title("Cost vs. iteration (tail)")
     gradient_ax1.set_ylabel('Cost')
     gradient_ax1.set_xlabel('iteration step')
