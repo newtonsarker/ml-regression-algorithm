@@ -14,16 +14,16 @@ def main():
 
     # initialize parameters
     initial_w = np.zeros_like(w_init)
-    initial_b = 0.
+    initial_b = 0.0
     # some gradient descent settings
-    iterations = 1000
+    iterations = 9000000
     alpha = 5.0e-7
     # run gradient descent
     w_final, b_final, J_hist = gd.compute_gradient_descent(X_train, y_train, initial_w, initial_b,alpha, iterations)
     print(f"b,w found by gradient descent: {b_final:0.2f},{w_final} ")
     for i in range(len(J_hist)):
         if i % math.ceil(len(J_hist) / 10) == 0:
-            print(f"Iteration {i:4d}: Cost {J_hist[-1]:8.2f}   ")
+            print(f"Iteration {i:4d}: Cost {J_hist[i]:8.2f}   ")
 
     m,_ = X_train.shape
     for i in range(m):

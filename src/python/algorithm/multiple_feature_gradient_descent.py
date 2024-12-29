@@ -91,20 +91,13 @@ def compute_gradient_descent(vector_x, vector_y, w_in, b_in, alpha, num_iters):
       p_history (list): History of parameters [w,b]
       """
 
-    # An array to store cost J and w's at each iteration primarily for graphing later
-    j_history = []
+    j_history = [] # cost history for graphing
     w = copy.deepcopy(w_in)
     b = copy.deepcopy(b_in)
     for i in range(num_iters):
-        # Calculate the gradient and update the parameters
-        dj_dw, dj_db = derivative(vector_x, vector_y, w, b)
-
-        # Update Parameters using w, b, alpha and gradient
-        w = w - alpha * dj_dw
-        b = b - alpha * dj_db
-
-        # Save cost J at each iteration
-        if i < 100000:  # prevent resource exhaustion
-            j_history.append(cost_of_error(vector_x, vector_y, w, b))
+        dj_dw, dj_db = derivative(vector_x, vector_y, w, b) # derivative of the J(w,b) with respect to w and b
+        w = w - alpha * dj_dw # update the weight
+        b = b - alpha * dj_db # update the bias
+        j_history.append(cost_of_error(vector_x, vector_y, w, b))
 
     return w, b, j_history
