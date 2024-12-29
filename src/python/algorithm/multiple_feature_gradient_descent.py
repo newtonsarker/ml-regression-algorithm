@@ -25,7 +25,7 @@ def cost_of_error(vector_x, vector_y, vector_w, bias):
     Return:
         cost (scalar): the cost of the error of the model
     """
-    m, n = vector_x.shape #(number of training data set, number of features)
+    m, _ = vector_x.shape #(number of training data set, number of features)
     cost = 0
 
     for i in range(m):

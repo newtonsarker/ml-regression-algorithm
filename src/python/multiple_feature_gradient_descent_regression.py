@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plot
-import algorithm.multiple_feature_gradient_descent as gd
+import algorithm.linear_regression.gradient_descent as gd
 
 def main():
 
@@ -19,7 +19,7 @@ def main():
     iterations = 9000000
     alpha = 5.0e-7
     # run gradient descent
-    w_final, b_final, J_hist = gd.compute_gradient_descent(X_train, y_train, initial_w, initial_b,alpha, iterations)
+    w_final, b_final, J_hist = gd.gradient_descent_of_multiple_feature_model(X_train, y_train, initial_w, initial_b,alpha, iterations)
     print(f"b,w found by gradient descent: {b_final:0.2f},{w_final} ")
     for i in range(len(J_hist)):
         if i % math.ceil(len(J_hist) / 10) == 0:
