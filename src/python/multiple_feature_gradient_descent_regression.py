@@ -1,4 +1,5 @@
 import numpy as np
+import math
 import matplotlib.pyplot as plot
 import algorithm.multiple_feature_gradient_descent as gd
 
@@ -20,6 +21,10 @@ def main():
     # run gradient descent
     w_final, b_final, J_hist = gd.compute_gradient_descent(X_train, y_train, initial_w, initial_b,alpha, iterations)
     print(f"b,w found by gradient descent: {b_final:0.2f},{w_final} ")
+    for i in range(len(J_hist)):
+        if i % math.ceil(len(J_hist) / 10) == 0:
+            print(f"Iteration {i:4d}: Cost {J_hist[-1]:8.2f}   ")
+
     m,_ = X_train.shape
     for i in range(m):
         print(f"prediction: {np.dot(X_train[i], w_final) + b_final:0.2f}, target value: {y_train[i]}")
