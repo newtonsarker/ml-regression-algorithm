@@ -121,3 +121,33 @@ def z_score_normalization(vector_of_x: List[float]) -> List[float]:
         normalized_vector_of_x = list(executor.map(lambda x: (x - mean_x) / std_dev_x, vector_of_x))
 
     return normalized_vector_of_x
+
+def z_score_normalization_matrix(matrix_of_x: np.ndarray) -> np.ndarray:
+    """
+    Perform Z-score normalization on a matrix of floats.
+
+    Z-score normalization, also known as standardization, is a technique used in data preprocessing, particularly in machine learning and statistics,
+    to scale data such that it has a mean of 0 and a standard deviation of 1. This helps standardize the data,
+    making it easier for algorithms to process and improving the performance of models.
+
+    Formula: z = (x - μ) / σ
+    Where:
+    - z is the normalized value of x
+    - x is the original value of x
+    - μ is the mean value of the list of x values
+    - σ is the standard deviation of the list of x values
+
+    Parameters
+    ----------
+    matrix_of_x : np.ndarray
+        A matrix of float values to be normalized.
+
+    Returns
+    -------
+    np.ndarray
+        A matrix of normalized float values.
+    """
+    mu = np.mean(matrix_of_x, axis=0)
+    sigma = np.std(matrix_of_x, axis=0)
+    normalized_matrix_of_x = (matrix_of_x - mu)/sigma
+    return normalized_matrix_of_x
