@@ -13,9 +13,15 @@ def main():
     initial_w = np.random.rand(X_mapped.shape[1]) - 0.5
     initial_b = 0.5
     lambda_ = 0.5
+
     cost = compute_cost_reg(X_mapped, y_train, initial_w, initial_b, lambda_)
     print("Regularized cost :", cost)
     compute_cost_reg_test(compute_cost_reg)
+
+    dj_db, dj_dw = compute_gradient_reg(X_mapped, y_train, initial_w, initial_b, lambda_)
+    print(f"dj_db: {dj_db}", )
+    print(f"First few elements of regularized dj_dw:\n {dj_dw[:4].tolist()}", )
+    compute_gradient_reg_test(compute_gradient_reg)
 
 def part1():
     X_train, y_train = load_data("data/ex2data1.txt")
@@ -218,6 +224,34 @@ def compute_cost_reg(X, y, w, b, lambda_ = 1):
     total_cost = cost_without_reg + reg_cost
 
     return total_cost
+
+# UNQ_C6
+def compute_gradient_reg(X, y, w, b, lambda_ = 1):
+    """
+    Computes the gradient for logistic regression with regularization
+
+    Args:
+      X : (ndarray Shape (m,n)) data, m examples by n features
+      y : (ndarray Shape (m,))  target value
+      w : (ndarray Shape (n,))  values of parameters of the model
+      b : (scalar)              value of bias parameter of the model
+      lambda_ : (scalar,float)  regularization constant
+    Returns
+      dj_db : (scalar)             The gradient of the cost w.r.t. the parameter b.
+      dj_dw : (ndarray Shape (n,)) The gradient of the cost w.r.t. the parameters w.
+
+    """
+    m, n = X.shape
+
+    dj_db, dj_dw = compute_gradient(X, y, w, b)
+
+    ### START CODE HERE ###
+    for j in range(n):
+        dj_dw[j] = dj_dw[j] + (lambda_/m) * w[j]
+
+    ### END CODE HERE ###
+
+    return dj_db, dj_dw
 
 if __name__ == "__main__":
     main()
